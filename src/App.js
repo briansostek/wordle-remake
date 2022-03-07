@@ -1,22 +1,29 @@
 import React from "react";
 import './App.css';
-const LETTERS= 6;
-var guessNum=1;
 
-var correctWord='square';
+const GUESSES=6;
+var currGuess=0;
+
+
+var correctWord=prompt("Enter the word to be played").toLowerCase();
+const LETTERS= correctWord.length;
 class App extends React.Component
 {
-    renderWords(i)
+    
+    renderWords()
     {
         return <Word/>;
     }
     render() 
     {
         var wordList=[];
-        for(var i=0; i<guessNum; i++)
+        wordList.push(<div> <Word/> </div>);
+        for(var i=1; i<GUESSES; i++)
         {
-            wordList.push(this.renderWords(i));
+            wordList.push(<div className="wordBox" id={"guess"+i} hidden="true"> <Word/> </div>);
+            wordList.push(<br/>);
         }
+        
         return wordList;
     } 
 }
@@ -40,15 +47,15 @@ class Letter extends React.Component
 {
     
     render() {
-        return <textarea maxLength={1} id={this.props.id} pattern="![^a-zA-Z0-9]" className={this.props.className}></textarea>;
+        return <textarea maxLength={1} id={this.props.id} type="text" className={this.props.className}></textarea>;
     }
 
 }
-function getGuess(props)
+function getGuess()
 {
    let tileColl= document.getElementsByTagName('textarea');
    var tiles = [].slice.call(tileColl);
-   tiles=tiles.slice(-6);
+   tiles=tiles.slice(currGuess*LETTERS);
    var text="";
    for(var i=0; i<tiles.length; i++)
     text+=tiles[i].value;
@@ -59,6 +66,7 @@ window.addEventListener('keypress', function (e) {
    {
        processGuess();
    }
+
   }, false);
 
   function processGuess()
@@ -66,7 +74,7 @@ window.addEventListener('keypress', function (e) {
         var guess= getGuess();
         if(guess.length===LETTERS)
         {
-            isWord(guess);
+            isWord(guess.toLowerCase());
         }
 
   }
@@ -82,29 +90,42 @@ window.addEventListener('keypress', function (e) {
         {
             changeTiles(word);
             if(word===correctWord)
-                console.log('you win');
+                alert('you win');
                 
         }
   }
   function changeTiles(word)
   {
-      guessNum++;
+      
       let tileColl = document.getElementsByTagName("textarea");
       var tiles = [].slice.call(tileColl);
-      tiles= tiles.slice(-LETTERS);
-      console.log(tiles);
+      tiles= tiles.slice(currGuess*LETTERS);
+      var letList=correctWord.split('');
       for(var i=0; i<LETTERS; i++)
       {
+          tiles[i].readonly=true;
           if(word[i]===correctWord[i])
           {
             tiles[i].className="Letter-correct";
           }
           else if(correctWord.includes(word[i]))
           {
+              if(letList.includes(word[i]))
               tiles[i].className="Letter-almost";
+              const index= letList.indexOf(word[i]);
+              letList.splice(index,1);
           }
+          else
+          {
+              tiles[i].className="Letter";
+          }
+          
       }
+      currGuess++;
+      document.getElementById("guess"+currGuess).hidden=false;
   }
- 
+
+
+
 
 export default App;
