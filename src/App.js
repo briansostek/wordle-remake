@@ -5,7 +5,7 @@ const GUESSES=6;
 var currGuess=0;
 
 
-var correctWord=prompt("Enter the word to be played").toLowerCase();
+var correctWord=prompt("Enter the word to be played", randomWord()).toLowerCase();
 const LETTERS= correctWord.length;
 class App extends React.Component
 {
@@ -17,7 +17,8 @@ class App extends React.Component
     render() 
     {
         var wordList=[];
-        wordList.push(<div> <Word/> </div>);
+        wordList.push(<Word/>);
+        wordList.push(<br/>);
         for(var i=1; i<GUESSES; i++)
         {
             wordList.push(<div className="wordBox" id={"guess"+i} hidden="true"> <Word/> </div>);
@@ -84,13 +85,18 @@ window.addEventListener('keypress', function (e) {
         
         fetch(url).then(response => processResponse(response,word)); 
   }
+  function randomWord()
+  {
+    const url= "https://api.dictionaryapi.dev/api/v2/entries/en/"+word;
+        
+    fetch(url).then(response => processResponse(response,word));
+  }
   function processResponse(response,word)
   {
       if(response.ok)
         {
             changeTiles(word);
-            if(word===correctWord)
-                alert('you win');
+            
                 
         }
   }
@@ -101,12 +107,25 @@ window.addEventListener('keypress', function (e) {
       var tiles = [].slice.call(tileColl);
       tiles= tiles.slice(currGuess*LETTERS);
       var letList=correctWord.split('');
+      if(word===correctWord)
+      {
+          tiles.forEach(element => {
+              element.className="Letter-correct";
+              element.disabled=true;
+          });
+          setTimeout(()=> alert('you win'),1000);
+        
+        return;
+      }
       for(var i=0; i<LETTERS; i++)
       {
-          tiles[i].readonly=true;
+          tiles[i].disabled=true;
           if(word[i]===correctWord[i])
           {
+            if(letList.includes(word[i]))
             tiles[i].className="Letter-correct";
+            const index= letList.indexOf(word[i]);
+              letList.splice(index,1);
           }
           else if(correctWord.includes(word[i]))
           {
@@ -122,6 +141,11 @@ window.addEventListener('keypress', function (e) {
           
       }
       currGuess++;
+      if(currGuess===GUESSES)
+      {
+          alert("You lose!");
+          return;
+      }
       document.getElementById("guess"+currGuess).hidden=false;
   }
 
