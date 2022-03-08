@@ -3,8 +3,7 @@ import './App.css';
 
 const GUESSES=6;
 var currGuess=0;
-
-
+var counter=0;
 var correctWord=prompt("Enter the word to be played", "grasp").toLowerCase();
 const LETTERS= correctWord.length;
 class App extends React.Component
@@ -22,7 +21,6 @@ class App extends React.Component
         for(var i=1; i<GUESSES; i++)
         {
             wordList.push(<div className="wordBox" id={"guess"+i} hidden="true"> <Word/> </div>);
-            wordList.push(<br/>);
         }
         
         return wordList;
@@ -30,16 +28,16 @@ class App extends React.Component
 }
 class Word extends React.Component
 {
-    renderLetter(i)
+    renderLetter()
     {
-        return <Letter text=" " id={i} className="Letter"/>;
+        return <Letter text=" " id={counter++} className="Letter"/>;
     }
     render()
     {
         var letterList= [];
         for(var i=0; i<LETTERS; i++)
         {
-            letterList.push(this.renderLetter(i));
+            letterList.push(this.renderLetter());
         }
         return letterList;
     }
@@ -62,11 +60,13 @@ function getGuess()
     text+=tiles[i].value;
     return text;
 }
-window.addEventListener('keypress', function (e) {
-   if(e.key=== "Enter")
-   {
-       processGuess();
-   }
+window.addEventListener('keydown', function (e) {
+    if(e.key=== "Enter")
+    {
+        processGuess();
+    }
+    
+   
 
   }, false);
 
