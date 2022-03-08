@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-const element= <App className="App-header"/>;
+const element= <div> <h2>Yourdle</h2> <App/></div>;
   ReactDOM.render(element,
     document.getElementById('root')
   );
