@@ -85,12 +85,7 @@ window.addEventListener('keypress', function (e) {
         
         fetch(url).then(response => processResponse(response,word)); 
   }
-  function randomWord()
-  {
-    const url= "https://api.dictionaryapi.dev/api/v2/entries/en/"+word;
-        
-    fetch(url).then(response => processResponse(response,word));
-  }
+
   function processResponse(response,word)
   {
       if(response.ok)
