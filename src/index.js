@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-const element= <div> <h2>Yourdle</h2> <App/></div>;
+const element= <div> <h2>Yourdle</h2> <App/> <small>created by @bsostek</small></div>;
   ReactDOM.render(element,
     document.getElementById('root')
   );

@@ -108,7 +108,7 @@ window.addEventListener('keypress', function (e) {
               element.className="Letter-correct";
               element.disabled=true;
           });
-          setTimeout(()=> alert('you win'),1000);
+          setTimeout(()=> alert('You win!'),1000);
         
         return;
       }
