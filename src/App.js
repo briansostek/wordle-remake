@@ -5,7 +5,7 @@ const GUESSES=6;
 var currGuess=0;
 
 
-var correctWord=prompt("Enter the word to be played", randomWord()).toLowerCase();
+var correctWord=prompt("Enter the word to be played", "grasp").toLowerCase();
 const LETTERS= correctWord.length;
 class App extends React.Component
 {
