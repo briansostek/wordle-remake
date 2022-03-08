@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yourdle/static/css/main.e24cc509.css",
+    "main.js": "/yourdle/static/js/main.c41ab21a.js",
+    "static/js/787.28cb0dcd.chunk.js": "/yourdle/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/yourdle/index.html",
+    "main.e24cc509.css.map": "/yourdle/static/css/main.e24cc509.css.map",
+    "main.c41ab21a.js.map": "/yourdle/static/js/main.c41ab21a.js.map",
+    "787.28cb0dcd.chunk.js.map": "/yourdle/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e24cc509.css",
+    "static/js/main.c41ab21a.js"
+  ]
+}
