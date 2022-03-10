@@ -44,10 +44,11 @@
   font-weight: bold;
   line-height: 50px;
   height: 50px;
-  margin: 10px;
+  margin: 2px;
   padding: 0px;
   text-align: center;
   width: 50px;
+  border-radius: 5px;
 }
 .Letter-almost
 {
@@ -57,10 +58,11 @@
   font-weight: bold;
   line-height: 50px;
   height: 50px;
-  margin: 10px;
+  margin: 2px;
   padding: 0px;
   text-align: center;
   width: 50px;
+  border-radius: 5px;
 }
 .Letter-correct
 {
@@ -70,16 +72,11 @@
   font-weight: bold;
   line-height: 50px;
   height: 50px;
-  margin: 10px;
+  margin: 2px;
   padding: 0px;
   text-align: center;
   width: 50px;
-}
-
-.wordBox
-{
-  align-items: center;
-  float:none;
+  border-radius: 5px;
 }
 
 textarea{
