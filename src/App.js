@@ -65,10 +65,10 @@ window.addEventListener('keydown', function (e) {
     {
         processGuess();
     }
-    
    
 
   }, false);
+   
 
   function processGuess()
   {
@@ -101,7 +101,6 @@ window.addEventListener('keydown', function (e) {
       let tileColl = document.getElementsByTagName("textarea");
       var tiles = [].slice.call(tileColl);
       tiles= tiles.slice(currGuess*LETTERS);
-      var letList=correctWord.split('');
       if(word===correctWord)
       {
           tiles.forEach(element => {
@@ -115,19 +114,27 @@ window.addEventListener('keydown', function (e) {
       for(var i=0; i<LETTERS; i++)
       {
           tiles[i].disabled=true;
-          if(word[i]===correctWord[i])
+          if(word[i]===correctWord[i]) //if correct letter
           {
-            if(letList.includes(word[i]))
-            tiles[i].className="Letter-correct";
-            const index= letList.indexOf(word[i]);
-              letList.splice(index,1);
+            tiles[i].className="Letter-correct"; //change the tile to green
+            for(let j=0; j<i; j++)
+            {
+                if(word[i]===word[j] && tiles[j].className!=="Letter-correct")
+                {
+                    tiles[j].className="Letter";
+                }
+            }
           }
           else if(correctWord.includes(word[i]))
           {
-              if(letList.includes(word[i]))
               tiles[i].className="Letter-almost";
-              const index= letList.indexOf(word[i]);
-              letList.splice(index,1);
+              for(let j=0; j<i; j++)
+            {
+                if(word[i]===word[j] && tiles[j].className==="Letter-correct")
+                {
+                    tiles[i].className="Letter";
+                }
+            }
           }
           else
           {
