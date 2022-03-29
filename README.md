@@ -1,3 +1,3 @@
 # Click here to play yourdle!
 
-<a target= "_blank" href="https://sostek.me/yourdle">Yourdle</a>
+<a  href="https://sostek.me/yourdle" target= "_blank">Yourdle</a>
